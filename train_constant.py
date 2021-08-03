@@ -196,7 +196,7 @@ def test(epoch):
             # test_loss += loss.item()
             # _, preds = outputs.max(1)
             # correct += preds.eq(old_labels).sum()
-    logger.append([train_loss_log.avg, val_loss_log.avg, train_acc_log.avg, val_acc_log.avg])
+    # logger.append([train_loss_log.avg, val_loss_log.avg, train_acc_log.avg, val_acc_log.avg])
     print('Test set: Average loss: {:.4f}, Accuracy: {:.4f}'.format(losses.avg, top1.avg))
 
     # add informations to tensorboard
