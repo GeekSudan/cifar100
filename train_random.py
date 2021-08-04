@@ -35,13 +35,13 @@ I = float(I)
 #optimizer with noise
 
 #znd
-from constant_noise.znd_constant import ZNDConstant
+from random_noise.znd_random import ZNDRandom
 
 #momentum
-from constant_noise.momentum_constant import MomentumConstant
+from random_noise.momentum_random import MomentumRandom
 
 #adam
-from constant_noise.adam_constant import AdamConstant
+from random_noise.adam_random import AdamRandom
 
 
 
@@ -110,7 +110,7 @@ args.save_path = 'runs/cifar100/' + 'cifar100_' + args.arch + '_/Ori' + \
                  "{0:%Y-%m-%dT%H-%M/}".format(datetime.now())
 
 
-logger = Logger('momentum_resnet18_constant.txt', title='cifar100')
+logger = Logger('znd_resnet18_random.txt', title='cifar100')
 logger.set_names(['Train Loss', 'Valid Loss', 'Train Acc.', 'Valid Acc.'])
 
 
@@ -348,7 +348,7 @@ if __name__ == '__main__':
         start_epoch = checkpoint['epoch']
 
     criterion = nn.CrossEntropyLoss()
-    optimizer = MomentumConstant(net.parameters(), lr=args.lr, momentum=0.9, weight_decay=5e-4)
+    optimizer = ZNDRandom(net.parameters(), lr=args.lr, momentum=0.9, weight_decay=5e-4, I = I)
     # optimizer = SGD(net.parameters(), lr=args.lr, momentum=0.9, weight_decay=5e-4)
     # optimizer = optimizers.get_optimizer(net.parameters(), 'adam_constant')
     # optimizer = SGD_atan(net.parameters(), lr=args.lr, momentum=0.9, weight_decay=5e-4, alpha=args.alpha, beta=args.beta)
